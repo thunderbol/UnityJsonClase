@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 195946297}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3199,6 +3199,7 @@ MonoBehaviour:
   fuerzaJump: 7
   movimientoH: 0
   playerTransform: {fileID: 0}
+  enElSuelo: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
