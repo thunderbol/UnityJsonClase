@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SocialPlatforms;
 
 public class PlayerController : MonoBehaviour
@@ -22,8 +23,10 @@ public class PlayerController : MonoBehaviour
 
     public bool enElSuelo = false;//Detección del suelo.
 
+    
 
-	void Start()
+
+    void Start()
     {
         //Inicializacion de Componentes
         rb = GetComponent<Rigidbody2D>();
@@ -42,14 +45,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
-   
+
     void Update()
     {
         //Movimiento Horizontal del player
-        movimientoH = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(movimientoH * velMovement,rb.velocity.y);
+        movimientoH = Input.GetAxis("Horizontal");//Llamado de input
+        rb.velocity = new Vector2(movimientoH * velMovement, rb.velocity.y);
         animator.SetFloat("Horizontal", Mathf.Abs(movimientoH));
-   
+
 
         //Flip
         if (movimientoH > 0)
@@ -63,24 +66,57 @@ public class PlayerController : MonoBehaviour
 
 
         //Salto
-        if (Input.GetButton("Jump") && enElSuelo) 
+        if (Input.GetButton("Jump") && enElSuelo)
         {
             animator.SetBool("Jump", true);
             rb.AddForce(new Vector2(0f, fuerzaJump), ForceMode2D.Impulse);
             enElSuelo = false;
         }
-       
+
     }
 
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         //Detectar el suelo
         if (collision.gameObject.CompareTag("Suelo"))
         {
             enElSuelo = true;
             Debug.Log("Estoy tocando el suelo");
         }
+    }
+
+     //Funcion Trigger para detectar enemigos
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+        if (collision.CompareTag("Enemy"))
+        {
+            //El jugador a tocado el Enemigo, así que lo consideramos muerto
+            Debug.Log("Soy el Enmigo");
+        }
+
+        Debug.Log("El trigger funciona");
+
 	}
+
+    public void PlayerDeath() 
+    {
+        //Realiza acciones con la muert del personaje 
+        //Mostrar la animación de muerte del player
+
+        //Funcion de respawn
+
+    }
+
+
+    public void RespawnCheckpoint() 
+    {
+        if (Checkpoint.activeCheckPoin) 
+        {
+
+        }
+    }
+
+    
 
 
 }
