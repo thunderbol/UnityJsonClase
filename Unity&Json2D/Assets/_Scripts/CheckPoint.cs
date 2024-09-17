@@ -9,7 +9,8 @@ public class CheckPoint : MonoBehaviour
 
     public static CheckPoint activeCheckpoint; //Instancia
 
-    private void OntriggerEnter2d(Collider2D other) 
+
+    private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.CompareTag("Player") && !Activated) 
         { 
@@ -21,15 +22,14 @@ public class CheckPoint : MonoBehaviour
             activeCheckpoint = this;
 
             //Guardar la posición del jugador con PlayerPrefs
-            PlayerPrefs.SetFloat("PlayerPosX".other.transform.position.x);
-            PlayerPrefs.SetFloat("PlayerPosY".other.transform.position.y);
+            PlayerPrefs.SetFloat("PlayerPosX", other.transform.position.x);
+            PlayerPrefs.SetFloat("PlayerPosY", other.transform.position.y);
 
             //PlayerPres solo guarda numeros
             //PlayerPefs.SetInt("Score", 100)
 
             //Guardar los cambios en PlayerPrefs
             PlayerPrefs.Save();
-
             //Realizar acciones para activar el checkpoin
 
 

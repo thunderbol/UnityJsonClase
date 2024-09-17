@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour
         {
             //El jugador a tocado el Enemigo, así que lo consideramos muerto
             Debug.Log("Soy el Enmigo");
+            //gameObject.SetActive(false);
+            //Destroy(gameObject);
+            PlayerDeath();
         }
 
         Debug.Log("El trigger funciona");
@@ -102,18 +105,31 @@ public class PlayerController : MonoBehaviour
     {
         //Realiza acciones con la muert del personaje 
         //Mostrar la animación de muerte del player
+        //Corrutina para esperar un tiempo
 
         //Funcion de respawn
-
+        RespawnCheckpoint();
     }
 
 
+    //RespawnCheckPoint
     public void RespawnCheckpoint() 
     {
-        if (Checkpoint.activeCheckPoin) 
+        if (CheckPoint.activeCheckpoint != null)
         {
+            //Traigo los valores guardos del CheckPoint
+            float playerPosX = PlayerPrefs.GetFloat("PlayerPosX");
+			float playerPosY = PlayerPrefs.GetFloat("PlayerPosY");
 
-        }
+            //Entregarle al personaje la posición que teniamos guardada
+            Vector3 respawnPosition = new Vector3(playerPosX, playerPosY, playerTransform.position.z);
+            playerTransform.position = respawnPosition; //llevar al personaje a la posición guardada
+
+		}
+
+        //Restaurar Vida 
+        //Reiniciar el juego 
+        //Mostrar animaciones
     }
 
     
