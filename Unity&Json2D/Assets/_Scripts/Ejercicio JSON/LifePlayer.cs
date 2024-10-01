@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class LifePlayer : MonoBehaviour
 {
-    public int CantidadVida;
+    public int cantidadVida;
 }
